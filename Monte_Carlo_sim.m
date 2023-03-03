@@ -7,7 +7,7 @@
 % Last updated: 28/02/2023
 
 clear; close all;
-newcalc = 1; % 0 for plotting only, 1 for new calculation, 0.5 for adding to existing data
+newcalc = 0; % 0 for plotting only, 1 for new calculation, 0.5 for adding to existing data
 
 
 %% Parameters
