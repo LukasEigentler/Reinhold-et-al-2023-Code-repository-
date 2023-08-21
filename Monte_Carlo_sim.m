@@ -115,6 +115,7 @@ for res = 1:length(distribution_vec) % loop through all distributions
 %     pbaspect([1 1 1])
     hold on
     grid on
+    plot(d_vec,(1-d_vec)/sqrt(12), '--')
     if res == 5
         xlabel("d (ratio of worst to best resource used)")
     end
