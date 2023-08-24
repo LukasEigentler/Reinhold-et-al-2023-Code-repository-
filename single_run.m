@@ -14,7 +14,7 @@ close all;
 N = 10000; % no of individuals
 tend = 2000; % no of generations
 distribution = "E"; % resource dist
-d = 0.3; % ratio worst to best resource
+d = 0.15; % ratio worst to best resource
     
     
         %% Resource dist 

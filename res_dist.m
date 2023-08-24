@@ -24,7 +24,7 @@ switch distribution
         sd = (1-d)/3;
         x = linspace(d,10,1000);
         Rcdf = erf((x-d)/(sqrt(2)*sd));
-        Rpdf = sqrt(2/(2*sd^2))*exp(-(x - d).^2/(2*sd^2)); % resource dist pdf
+        Rpdf = sqrt(2/(pi*sd^2))*exp(-(x - d).^2/(2*sd^2)); % resource dist pdf
     case "F"
         Rcdf = d./((d - 1)*x) - 1/(d - 1); % resource dist cdf
         Rpdf = d./((1 - d)*x.^2); % resource dist pdf
