@@ -7,16 +7,16 @@ function [R_dist,Rpdf,x] = res_dist(d, distribution)
 
 x = linspace(d,1,1000);
 switch distribution
-    case "A"
+    case "C"
         Rcdf = -x/(d - 1) + d/(d - 1); % resource dist cdf
         Rpdf = 1/(1 - d)*ones(1,length(x)); % resource dist pdf
-    case "B"
+    case "D"
         Rcdf = -x.*(-2 + x)/(d - 1)^2 + d*(-2 + d)/(d - 1)^2; % resource dist cdf
         Rpdf = 2*(1 - x)/(d - 1)^2; % resource dist pdf
-    case "C"
+    case "A"
         Rcdf = (-2*d*x + x.^2)/(d - 1)^2 + d^2/(d - 1)^2; % resource dist cdf
         Rpdf = 2*(x - d)/(d - 1)^2; % resource dist pdf
-    case "D"
+    case "B"
         x1 = x(x<(d+1)/2); x2 = x(x>(d+1)/2);
         Rcdf = 1/(d-1)^2*(2*d^2 + [2*x1.*(x1 - 2*d),-d^2 - 2*x2.^2 - 2*d + 4*x2 - 1]); % resource dist cdf
         Rpdf = [(4*(x1-d))/(d^2-2*d+1), (4*(1-x2))/(d^2-2*d+1)]; % resource dist pdf
