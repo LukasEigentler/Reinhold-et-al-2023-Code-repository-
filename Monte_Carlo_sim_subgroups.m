@@ -13,9 +13,13 @@ newcalc = 1; % 0 for plotting only, 1 for new calculation, 0.5 for adding to exi
 %% Parameters
 
 N = 1e4; % no of individuals
+Nsub = 1e1; % no of subgroups
+if mod(N,Nsub) ~=0
+    error("N needs to be whole multiple of Nsub")
+end
 tend = 2000; % no of generations
 d_vec_new = [0.01,0.05:0.05:0.95, 0.99]; % vector that contains all ratios worst to best resource used in the simulations
-norep = 100; % number of independent replicates
+norep = 10; % number of independent replicates
 distribution_vec = ["F"]; % resource distributions to be used
 f3 = figure(3); % initialise figures
 f2 = figure(2);
@@ -27,7 +31,7 @@ step = 0;
 for res = 1:length(distribution_vec) % loop through all distributions
     distribution = distribution_vec(res);
     if newcalc < 1 % load existing data if not the first run and create plot of one example resource distribution
-        load("Data/dist"+distribution+"_N"+num2str(N))
+        load("Data/dist"+distribution+"_N"+num2str(N)+"_Nsub"+num2str(Nsub))
         if newcalc == 0
             d = 0.2;
             [R_dist, Rpdf, x] = res_dist(d, distribution);
@@ -63,7 +67,7 @@ for res = 1:length(distribution_vec) % loop through all distributions
                 
                 
                 %% solver
-                c_gen = IBM_solve(tend,c_gen,N,R_dist);
+                c_gen = IBM_solve_subgroups(tend,c_gen,N,Nsub,R_dist);
                 %% Outputs
                 cmean = mean(c_gen,2); % find mean
                 cstd = std(c_gen,0,2); % find std
@@ -86,7 +90,7 @@ for res = 1:length(distribution_vec) % loop through all distributions
             c_mean_min_sum(exist + dd) = mean(c_mean_min(:,dd));
         end
         %% save data
-        save("Data/dist"+distribution+"_N"+num2str(N), "distribution", "d_vec", "c_mean_1000_sum", "c_mean_max_sum", "c_mean_min_sum", "c_std_1000_sum", "N")
+        save("Data/dist"+distribution+"_N"+num2str(N)+"_Nsub"+num2str(Nsub), "distribution", "d_vec", "c_mean_1000_sum", "c_mean_max_sum", "c_mean_min_sum", "c_std_1000_sum", "N", "Nsub")
     
            
     end
@@ -163,8 +167,8 @@ set(f4,'Position',[18 1 17 20])
 
 
 %% save figures
-exportgraphics(f3,"plots/SD_vs_d_N"+num2str(N)+".jpg",'Resolution',1000)
-exportgraphics(f2,"plots/mean_c_vs_d_N"+num2str(N)+".jpg",'Resolution',1000)
-exportgraphics(f4,"plots/rel_SD_vs_d_N"+num2str(N)+".jpg",'Resolution',1000)
+exportgraphics(f3,"plots/SD_vs_d_N"+num2str(N)+"_Nsub"+num2str(Nsub)+".jpg",'Resolution',1000)
+exportgraphics(f2,"plots/mean_c_vs_d_N"+num2str(N)+"_Nsub"+num2str(Nsub)+".jpg",'Resolution',1000)
+exportgraphics(f4,"plots/rel_SD_vs_d_N"+num2str(N)+"_Nsub"+num2str(Nsub)+".jpg",'Resolution',1000)
 
 
