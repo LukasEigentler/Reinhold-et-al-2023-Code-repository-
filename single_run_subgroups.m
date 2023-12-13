@@ -11,7 +11,8 @@ close all;
 
 %% Parameters
 
-N = 1000; % no of individuals
+N = 10000; % no of individuals
+Nsub = 2; % no of ind in subgroup
 tend = 2000; % no of generations
 distribution = "F"; % resource dist
 d = 0.15; % ratio worst to best resource
@@ -27,7 +28,7 @@ c_gen(1,:) = rand(1,N); % initial c's randomly chosen
 
 %% solver
 tic
-c_gen = IBM_solve(tend,c_gen,N,R_dist);
+c_gen = IBM_solve_subgroups(tend,c_gen,N,Nsub,R_dist);
 toc
             
 %% Outputs

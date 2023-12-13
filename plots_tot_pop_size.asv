@@ -52,13 +52,13 @@ for nn = 1:length(Nsubplot)
         xlabel("d (ratio of worst to best resource used)", "Position",[1.2 -0.15])
         ylabel("Mean c (investment in competition)", "Position",[-0.2 1.2])
     end
-    title("$N=" +num2str(N)+", N_{sub} = "+num2str(Nsub)+"$", 'Interpreter','latex')
+    title("$N = "+num2str(N)+"$", 'Interpreter','latex')
     ylim([0,1])
 end
 
-set(f1,'Windowstyle','normal')
-set(findall(f1,'-property','FontSize'),'FontSize',11)
-set(f1,'Units','centimeters')
-set(f1,'Position',[18 1 17 2/3*20])
-exportgraphics(f1,"plots/meanc_vs_d_different_Nsub_distribution"+num2str(distribution)+".jpg",'Resolution',1000)
+set(f,'Windowstyle','normal')
+set(findall(f,'-property','FontSize'),'FontSize',11)
+set(f,'Units','centimeters')
+set(f,'Position',[18 1 17 2/3*20])
+exportgraphics(f,"plots/meanc_vs_d_different_N_distribution"+num2str(distribution)+".jpg",'Resolution',1000)
 
