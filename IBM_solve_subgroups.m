@@ -30,7 +30,11 @@ for tt = 1:tend
         c_gen_sort = c_gen(sort_ind); % reorder genetic trait value vector
         fit = (1-c_exp_sort).*R_sort; % define fitness of individuals
         fit(fit<0) = 0; % negative fitness is same as fitness = 0 --> no reproduction
-        c_new = randsample(c_gen_sort,Nsub,true,fit); % new trait values without mutation
+        try % if all entries have negative fitness, then all move to new generation
+            c_new = randsample(c_gen_sort,Nsub,true,fit); % new trait values without mutation
+        catch
+            c_new = c_gen_sort;
+        end
         mut = rand(1,Nsub) < 0.01; % define mutation events
         c_gen_new_no_bc = c_new + mut.*normrnd(0,0.1,1,Nsub); % apply mutations
         c_gen_new_no_bc(c_gen_new_no_bc<0) = 0; c_gen_new_no_bc(c_gen_new_no_bc>1) = 1; % apply bc

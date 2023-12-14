@@ -13,7 +13,7 @@ newcalc = 1; % 0 for plotting only, 1 for new calculation, 0.5 for adding to exi
 %% Parameters
 
 N = 1e4; % no of individuals
-Nsub = 1e1; % no of subgroups
+Nsub = 2; % no of subgroups
 if mod(N,Nsub) ~=0
     error("N needs to be whole multiple of Nsub")
 end
