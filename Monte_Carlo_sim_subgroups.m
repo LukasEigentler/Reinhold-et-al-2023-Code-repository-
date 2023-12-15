@@ -19,7 +19,7 @@ if mod(N,Nsub) ~=0
 end
 tend = 2000; % no of generations
 d_vec_new = [0.01,0.05:0.05:0.95, 0.99]; % vector that contains all ratios worst to best resource used in the simulations
-norep = 10; % number of independent replicates
+norep = 2; % number of independent replicates
 distribution_vec = ["F"]; % resource distributions to be used
 f3 = figure(3); % initialise figures
 f2 = figure(2);
