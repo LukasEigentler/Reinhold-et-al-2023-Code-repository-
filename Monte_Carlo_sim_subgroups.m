@@ -7,19 +7,23 @@
 % Last updated: 28/02/2023
 
 clear; close all;
-newcalc = 1; % 0 for plotting only, 1 for new calculation, 0.5 for adding to existing data
+newcalc = 0.5; % 0 for plotting only, 1 for new calculation, 0.5 for adding to existing data
 
 
 %% Parameters
 
 N = 1e4; % no of individuals
-Nsub = 2; % no of subgroups
+Nsub = 1e2; % no of subgroups
 if mod(N,Nsub) ~=0
     error("N needs to be whole multiple of Nsub")
 end
 tend = 2000; % no of generations
 d_vec_new = [0.01,0.05:0.05:0.95, 0.99]; % vector that contains all ratios worst to best resource used in the simulations
+<<<<<<< Updated upstream
 norep = 2; % number of independent replicates
+=======
+norep = 9; % number of independent replicates
+>>>>>>> Stashed changes
 distribution_vec = ["F"]; % resource distributions to be used
 f3 = figure(3); % initialise figures
 f2 = figure(2);

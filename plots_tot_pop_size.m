@@ -36,7 +36,7 @@ exportgraphics(f,"plots/meanc_vs_d_different_N_distribution"+num2str(distributio
 
 %% different local population sizes
 N = 1e4;
-Nsubplot = [10,100,1000]; % N values to be used
+Nsubplot = [2,10,100,1000]; % N values to be used
 distribution = "F"; % distribution to be used
 f1 = figure;
 for nn = 1:length(Nsubplot)
