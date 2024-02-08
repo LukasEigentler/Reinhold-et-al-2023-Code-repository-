@@ -7,7 +7,7 @@
 % Last updated: 28/02/2023
 
 clear; close all;
-newcalc = 1; % 0 for plotting only, 1 for new calculation, 0.5 for adding to existing data
+newcalc = 0; % 0 for plotting only, 1 for new calculation, 0.5 for adding to existing data
 
 
 %% Parameters
@@ -16,7 +16,7 @@ N = 1e4; % no of individuals
 tend = 2000; % no of generations
 d_vec_new = [0.01,0.05:0.05:0.95, 0.99]; % vector that contains all ratios worst to best resource used in the simulations
 norep = 100; % number of independent replicates
-distribution_vec = ["F"]; % resource distributions to be used
+distribution_vec = ["A","B","C","D","E","F"]; % resource distributions to be used
 f3 = figure(3); % initialise figures
 f2 = figure(2);
 f1 = figure(1);
@@ -49,7 +49,7 @@ for res = 1:length(distribution_vec) % loop through all distributions
         
             %% Resource dist and check of random number generator
             [R_dist, Rpdf, x] = res_dist(d, distribution); % define resource distribution
-             if dd == 4 % Example plot of resource distribution for one d value
+             if d == 0.35 % Example plot of resource distribution for one d value
                 rand_nums = random(R_dist, 1, N);
                 figure(f1)
                 subplot(3,2,res)
@@ -146,6 +146,12 @@ for res = 1:length(distribution_vec) % loop through all distributions
 end
 
 %% finalise figures
+
+set(f1,'Windowstyle','normal')
+set(findall(f1,'-property','FontSize'),'FontSize',11)
+set(f1,'Units','centimeters')
+set(f1,'Position',[18 1 17 20])
+
 set(f2,'Windowstyle','normal')
 set(findall(f2,'-property','FontSize'),'FontSize',11)
 set(f2,'Units','centimeters')
@@ -163,8 +169,8 @@ set(f4,'Position',[18 1 17 20])
 
 
 %% save figures
-exportgraphics(f3,"plots/SD_vs_d_N"+num2str(N)+".jpg",'Resolution',1000)
-exportgraphics(f2,"plots/mean_c_vs_d_N"+num2str(N)+".jpg",'Resolution',1000)
-exportgraphics(f4,"plots/rel_SD_vs_d_N"+num2str(N)+".jpg",'Resolution',1000)
+% exportgraphics(f3,"plots/SD_vs_d_N"+num2str(N)+".jpg",'Resolution',1000)
+% exportgraphics(f2,"plots/mean_c_vs_d_N"+num2str(N)+".jpg",'Resolution',1000)
+% exportgraphics(f4,"plots/rel_SD_vs_d_N"+num2str(N)+".jpg",'Resolution',1000)
 
 
