@@ -24,4 +24,8 @@ title(eq, "Interpreter","latex")
 xlim([d,1])
 xticks([d,1])
 xticklabels(["d", "1"])
+yticks([0,1/(1-d)])
+yticklabels(["$0$", "$\frac{1}{1-d}$"])
+set(gca,'TickLabelInterpreter','latex')
+grid on
 ylim([0,3])

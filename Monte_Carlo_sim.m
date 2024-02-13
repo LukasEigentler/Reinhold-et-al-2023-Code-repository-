@@ -29,7 +29,11 @@ for res = 1:length(distribution_vec) % loop through all distributions
     if newcalc < 1 % load existing data if not the first run and create plot of one example resource distribution
         load("Data/dist"+distribution+"_N"+num2str(N))
         if newcalc == 0
-            d = 0.2;
+            if distribution == "F"
+                d=0.2;
+            else
+                d = 0.2;
+            end
             [R_dist, Rpdf, x] = res_dist(d, distribution);
             rand_nums = random(R_dist, 1, N);
             figure(f1)
